@@ -8,7 +8,7 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
 - Familiarity with Windows OS and Command Prompt.
 - Java JDK installed on the machine.
 
-## Lab Setup and Tools
+## Setup and Tools
 - Windows 10/11
 - [Java JDK (LTS version)](https://www.oracle.com/java/technologies/javase-downloads.html) installed
 - [Elasticsearch for Windows](https://www.elastic.co/downloads/elasticsearch)
@@ -22,23 +22,15 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
 ### Exercise 1: Installing Java
 
 **Steps:**
-1. Download and install the latest LTS Java JDK from [Oracle](https://www.oracle.com/java/technologies/javase-downloads.html) or use OpenJDK.
-2. Set the `JAVA_HOME` environment variable:
-    - Right-click on **This PC** → **Properties** → **Advanced system settings** → **Environment Variables**.
-    - Under **System variables**, click **New**:
-        - Variable name: `JAVA_HOME`
-        - Variable value: `C:\Program Files\Java\jdk-XX` (replace with your installed path).
-    - Edit the **Path** variable and add:
-      ```
-      %JAVA_HOME%\bin
-      ```
-3. Verify Java installation:
+1. Download and install the latest LTS Java JDK from [Oracle](https://www.oracle.com/java/technologies/javase-downloads.html) or [OpenJDK](https://adoptium.net/).
+2. During installation, ensure the option **"Set JAVA_HOME environment variable"** is selected (if available).
+3. After installation, verify Java installation by running the following command in Command Prompt:
     ```bash
     java -version
     ```
 
 **Expected Output:**
-- Java version displayed successfully.
+- Java version is displayed successfully in the Command Prompt.
 
 ---
 
@@ -46,10 +38,10 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
 
 **Steps:**
 1. Download Elasticsearch for Windows from [Elastic Downloads](https://www.elastic.co/downloads/elasticsearch).
-2. Extract the ZIP file to `C:\elasticsearch-9.0.0-windows-x86_64\`.
+2. Extract the ZIP file to `C:\elasticsearch`.
 3. Open Command Prompt and navigate:
     ```bash
-    cd C:\Users\indira gothi\Downloads\elasticsearch-9.0.0-windows-x86_64\elasticsearch-9.0.0\bin
+    cd C:\elasticsearch\bin
     ```
 4. Start Elasticsearch:
     ```bash
@@ -68,9 +60,9 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
 
 **Steps:**
 1. Download Kibana for Windows from [Elastic Downloads](https://www.elastic.co/downloads/kibana).
-2. Extract the ZIP file to `C:\kibana-9.0.0-windows-x86_64`.
+2. Extract the ZIP file to `C:\kibana`.
 3. Configure Kibana:
-    - Open `C:\Users\indira gothi\Downloads\kibana-9.0.0-windows-x86_64\kibana-9.0.0\config\kibana.yml` in a text editor.
+    - Open `C:\kibana\config\kibana.yml` in a text editor.
     - Uncomment and ensure the following settings:
     ```yaml
     server.port: 5601
@@ -79,7 +71,7 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
     ```
 4. Open Command Prompt and navigate:
     ```bash
-    cd C:\Users\indira gothi\Downloads\kibana-9.0.0-windows-x86_64\kibana-9.0.0\bin
+    cd C:\kibana\bin
     ```
 5. Start Kibana:
     ```bash
@@ -126,22 +118,30 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
 ### Exercise 6: Creating a Kibana Dashboard
 
 **Steps:**
-1. In Kibana, go to **Dashboard** → **Create dashboard**.
-2. Click **Create visualization**.
-3. Select Visualization Type:
-    - **Bar Chart**, **Line Graph**, **Pie Chart**, etc.
-4. Choose the Sample Dataset’s Index Pattern:
-    - e.g., `kibana_sample_data_logs`
-5. Configure Visualization:
-    - Add a **Metric** (e.g., Count, Average, Sum).
-    - Add **Buckets** (e.g., Date Histogram for time series).
-6. Save each visualization.
-7. Add saved visualizations to your dashboard.
-8. Arrange and resize visualizations as needed.
-9. Save the dashboard with a descriptive name.
+
+1. In Kibana, go to **Discover**:
+   - Select the **eCommerce sample data** (`kibana_sample_data_ecommerce`).
+   - Explore available fields and records.
+
+2. Go to **Visualize Library** → **Create Visualization**:
+   - Use **Lens** editor to create visualizations.
+   - Choose types like **Bar Chart**, **Pie Chart**, **Table**, etc.
+
+3. Create Visualizations:
+   - Example: Bar Chart of `order_date` vs `total_quantity`.
+   - Example: Pie Chart of `category.keyword`.
+   - Example: Table showing `customer_gender` and `sum of total_quantity`.
+
+4. Save each visualization with a meaningful name.
+
+5. Go to **Dashboard** → **Create Dashboard**:
+   - Click **Add from Library** and select saved visualizations.
+   - Arrange and resize them as needed.
+
+6. Save the dashboard with a descriptive name.
 
 **Expected Output:**
-- A custom dashboard with multiple interactive visualizations.
+- A dashboard with multiple visualizations based on the eCommerce dataset.
 
 ---
 
@@ -153,10 +153,14 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
 
 **Query 1: Fetch first 10 documents**
 ```json
-GET kibana_sample_data_logs/_search
+GET kibana_sample_data_ecommerce/_search
 {
   "query": {
-    "match_all": {}
-  },
-  "size": 10
+    "term": {
+      "category.keyword":"Women's Clothing"   
+    }
+  }
 }
+
+**Expected Output:**
+- Query results displayed in JSON format.
