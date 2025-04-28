@@ -153,10 +153,14 @@ In this project, I learn how to install and configure the ELK Stack (Elasticsear
 
 **Query 1: Fetch first 10 documents**
 ```json
-GET kibana_sample_data_logs/_search
+GET kibana_sample_data_ecommerce/_search
 {
   "query": {
     "match_all": {}
   },
   "size": 10
 }
+
+```
+**Expected Output:**
+- Query results displayed in JSON format.
