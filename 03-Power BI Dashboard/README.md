@@ -1,4 +1,4 @@
-# 📊 Power BI Dashboard Projects
+# 📊 Power BI Dashboard Using DAX Queries
 
 This repository contains two Power BI dashboard projects created using different data modeling and visualization techniques — one focused on basic reporting and the other on advanced DAX-based analytics.
 
@@ -60,7 +60,6 @@ This dashboard uses advanced **DAX queries** with two tables: `DAX Customers` an
 ### 📊 Visuals:
 - Matrix table with DAX-based metrics
 - Slicers for product/state filtering
-- KPIs for real-time calculated metrics
 
 ### 🎯 Objective:
 To demonstrate powerful analytics using DAX for custom insights and dynamic reporting.
