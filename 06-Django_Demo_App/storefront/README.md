@@ -56,7 +56,7 @@ Download and install Python from [python.org](https://www.python.org/downloads/)
 
 ```bash
 # Create a new conda environment
-conda create -p venv python==3.12 -y
+conda create -n venv python==3.12 -y
 
 # Activate the environment
 conda activate venv
@@ -68,19 +68,29 @@ conda activate venv
 pip install -r requirements.txt
 ```
 
-### 5. Run migrations
+### 5. Create directory
 
 ```bash
-python manage.py migrate
+mkdir storefront
+cd storefront
+```
+### 6. Install Django
+```bash
+pip install django
 ```
 
-### 6. Run the development server
+### 7. Create Django project
+```bash
+python -m django startproject storefront .
+``` 
+
+### 8. Run the development server
 
 ```bash
 python manage.py runserver
 ```
 
-### 7. Access the application
+### 9. Access the application
 
 Open your web browser and navigate to [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
