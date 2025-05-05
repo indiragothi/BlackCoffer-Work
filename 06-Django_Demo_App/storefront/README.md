@@ -84,13 +84,23 @@ pip install django
 python -m django startproject storefront .
 ``` 
 
-### 8. Run the development server
+### 8. Create Django app
+```bash
+python manage.py startapp quotes
+```
+
+### 8. Run the migrations
+```bash
+python manage.py migrate
+```
+
+### 10. Run the development server
 
 ```bash
 python manage.py runserver
 ```
 
-### 9. Access the application
+### 11. Access the application
 
 Open your web browser and navigate to [http://127.0.0.1:8000](http://127.0.0.1:8000)
 

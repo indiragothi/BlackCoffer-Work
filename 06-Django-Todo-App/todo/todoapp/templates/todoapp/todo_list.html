@@ -1,0 +1,33 @@
+{% extends 'todoapp/base.html' %}
+
+{% block content %}
+    <a href="{% url 'todo_create' %}" class="btn">Add New Todo</a>
+    
+    {% if todos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                    <tr>
+                        <td>{{ todo.title }}</td>
+                        <td>{{ todo.description }}</td>
+                        <td>{% if todo.completed %}Completed{% else %}Pending{% endif %}</td>
+                        <td>
+                            <a href="{% url 'todo_update' todo.id %}" class="btn">Edit</a>
+                            <a href="{% url 'todo_delete' todo.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No todos yet.</p>
+    {% endif %}
+{% endblock %}
