@@ -40,7 +40,7 @@
    ```
 
 5. **Connect via LiveKit Playground**
-   - Go to [LiveKit Playground](https://playground.livekit.io/)
+   - Go to [LiveKit Playground](https://agents-playground.livekit.io/)
    - Enter your LiveKit URL and a username
    - Click "Connect"
    - The assistant will automatically join and respond to voice/text
