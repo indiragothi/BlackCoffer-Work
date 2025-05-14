@@ -1,37 +1,39 @@
-# Student Activity Management with Retool and Google Sheets
+# 🎓 Student Activity Management with Retool and Google Sheets
 
-This project is a simple student management interface built using **Retool** and connected to **Google Sheets** as a backend. It allows users to **view**, **add**, **update**, and **delete** student records, including fields such as name, gender, class level, home state, major, and extracurricular activity.
+A lightweight CRUD-based student activity management system built using **Retool** and connected to **Google Sheets** for backend data storage.
 
 ---
 
-## 🔗 Data Source
+## 📂 Project Overview
 
-- **Backend**: Google Sheets (`student activity`)
+This app allows users to:
+
+- 🔍 **View** all student records in a table
+- ➕ **Insert** new student entries via a form
+- ✏️ **Update** selected student information
+- ❌ **Delete** student records
+
+---
+
+## 🔗 Data Source Configuration
+
+- **Backend**: Google Sheets
+- **Spreadsheet Name**: `student activity`
 - **Sheet Name**: `Sheet1`
-- **Columns**:
-  - `Student Name`
-  - `Gender`
-  - `Class Level`
-  - `Home State`
-  - `Major`
-  - `Extracurricular Activity`
+
+### Sheet Columns:
+- `Student Name`
+- `Gender`
+- `Class Level`
+- `Home State`
+- `Major`
+- `Extracurricular Activity`
 
 ---
 
-## 🧩 Features
+## 🧩 Retool Components Setup
 
-- ✅ View student data in a table (auto-synced with Google Sheets)
-- ➕ Add new student records using a form
-- 🔄 Update existing student details
-- ❌ Delete student records from the table
-
----
-
-## 🛠 Retool Setup
-
-### 1. Create Form Inputs
-
-Inside Retool, add the following form inputs:
+### 📝 Form Inputs
 
 | Label                    | Component Type | ID                        |
 |--------------------------|----------------|---------------------------|
@@ -42,28 +44,31 @@ Inside Retool, add the following form inputs:
 | Major                    | Dropdown/Text  | `major`                   |
 | Extracurricular Activity | Dropdown/Text  | `extracurricular_activity`|
 
-Also add a **Submit** button with ID: `submitBtn`
+### 🔘 Submit Button
+
+- **Label**: Submit
+- **Component ID**: `submitBtn`
+- **Event Handler**:
+  - Action: Run query → `insertStudent`
+  - (Optional: Refresh table using `readData` after insert)
 
 ---
 
-### 2. Create Insert Query
+## 🧠 Queries Used
 
-- **Query Name**: `insertStudent`
+### 1. 📥 `insertStudent` (Insert New Row)
 - **Resource**: Google Sheets
-- **Action Type**: `Append data to a spreadsheet`
-- **Spreadsheet**: `student activity`
-- **Sheet Name**: `Sheet1`
+- **Action Type**: Append data to a spreadsheet
+- **Sheet**: `Sheet1`
 - **Values to Append**:
-```js
-[
-  [
-    student_name.value,
-    gender.value,
-    class_level.value,
-    home_state.value,
-    major.value,
-    extracurricular_activity.value
-  ]
-]
 
- 
+```js
+{
+  "Student Name": {{ form1.data.Student_name }},
+  "Gender": {{ form1.data.Gender }},
+  "Class Level": {{ form1.data.Class_level }},
+  "Home State": {{ form1.data.Home_state }},
+  "Major": {{ form1.data.Major }},
+  "Extracurricular Activity": {{ form1.data.Extracurricular_activity }}
+}
+
