@@ -71,6 +71,7 @@ This app allows users to:
   "Major": {{ form1.data.Major }},
   "Extracurricular Activity": {{ form1.data.Extracurricular_activity }}
 }
+```
 
 ### 📄 2. `readData` – Read Records
 
