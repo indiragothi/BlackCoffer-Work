@@ -56,7 +56,7 @@ This app allows users to:
 
 ## 🧠 Queries Used
 
-### 1. 📥 `insertStudent` (Insert New Row)
+### 1. 📥 `insertData` (Insert New Row)
 - **Resource**: Google Sheets
 - **Action Type**: Append data to a spreadsheet
 - **Sheet**: `Sheet1`
@@ -72,3 +72,37 @@ This app allows users to:
   "Extracurricular Activity": {{ form1.data.Extracurricular_activity }}
 }
 
+### 📄 2. `readData` – Read Records
+
+- **Action Type**: `Read data from a spreadsheet`
+- **Sheet Name**: `Sheet1`
+
+### ✅ Use Case:
+Fetches all records and displays them in a table component.
+
+> No filters needed for full sheet read.
+
+### 3. `updateRow` – Update a Record
+
+- **Action Type**: `Update a row`
+- **Sheet Name**: `Sheet1`
+
+🔎 Filter to Match Row:
+Use a unique identifier to match the correct row to update. Example using Student Name (if unique):
+```js
+{
+  "Student Name": {{ form1.data["Student Name"] }}
+}
+```
+
+### ❌ 4. `deleteRow` – Delete a Record
+
+- **Action Type**: `Delete a single row`
+- **Sheet Name**: `Sheet1`
+
+🔎 Filter to Match Row:
+```js
+{
+  "Student Name": {{ form1.data["Student Name"] }}
+}
+```
