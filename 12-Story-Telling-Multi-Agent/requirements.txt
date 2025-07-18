@@ -1,0 +1,9 @@
+livekit-agents>=1.1.6
+python-dotenv
+ollama
+faster-whisper
+torch>=1.12.1
+numpy
+soundfile
+aiohttp
+sounddevice
